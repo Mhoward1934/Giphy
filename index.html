@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Giphy</title>
+</head>
+
+<body>
+    <h1>Get GIPHY With It!</h1>
+    <style type="text/css">
+        button,
+        div,
+        form,
+        input {
+            margin: 10px;
+        }
+
+    </style>
+    </head>
+
+    <body>
+
+        <div class="container">
+            <h2>Giphy Search for Reactions:</h2>
+            <div id="laughs"></div>
+
+            <form id="giphy-form">
+                <label for="giphy-input">Add More Giphys!</label>
+                <input type="text" id="giphy-input"><br>
+                <input id="add-giphy" type="submit" value="Add More Giphys!">
+            </form>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script type="text/javascript">
+                // Initial array of giphys
+                var topics = ["funny", "whatever", "laughing"];
+
+                // Function for displaying giphy data
+                function renderButtons() {
+
+                    // Deleting the giphy buttons prior to adding new giphy buttons
+                    // (this is necessary otherwise we will have repeat buttons)
+                    $("#laughs").empty();
+
+                    // Looping through the array of giphys
+                    for (var i = 0; i < topics.length; i++) {
+
+                        // Then dynamicaly generating buttons for each topic in the array.
+                        // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
+                        var a = $("<button>");
+                        // Adding a class
+                        a.addClass("giphy");
+                        // Adding a data-attribute with a value of the topics at index i
+                        a.attr("data-name", topics[i]);
+                        // Providing the button's text with a value of the topics at index i
+                        a.text(topics[i]);
+                        // Adding the button to the HTML
+                        $("#laughs").append(a);
+                    }
+                }
+                // This function handles events where one button is clicked
+                $("#add-giphy").on("click", function (event) {
+                    // event.preventDefault() prevents the form from trying to submit itself.
+                    event.preventDefault();
+
+                    // This line will grab the text from the input box
+                    var topic = $("#giphy-input").val().trim();
+                    // The topic from the textbox is then added to the array
+                    topics.push(topic);
+
+                    // calling renderButtons which handles the processing of our topics array
+                    renderButtons();
+                });
+
+                // Calling the renderButtons function at least once to display the initial list of topics
+                renderButtons();
+            </script>
+        </div>
+
+    </body>
+
+</html>
