@@ -1,0 +1,14 @@
+button,
+div,
+form,
+input {
+    margin: 10px;
+}
+h1 {
+    background-color: blue;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+body {
+    background-color: tan;
+}

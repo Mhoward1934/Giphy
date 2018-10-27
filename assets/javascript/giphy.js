@@ -20,12 +20,15 @@ function displayGiphyInfo() {
 
             //Store the rating data
             var rating = response.data[i].rating;
+            var title = response.data[i].title;
 
             //Create an element to have the rating displayed
             var pOne = $("<p>").text("Rating: " + rating);
+            var pTwo = $("<p>").text("Title: " + title);
 
             //Displaying the rating
-            topicDiv.append(pOne);
+            topicDiv.append(pOne, pTwo);
+            //topicDiv.append(pTwo);
 
             //Getting the giphy image
             var imgURL = response.data[i].images.original.url;
@@ -34,27 +37,13 @@ function displayGiphyInfo() {
             var images = $("<img>").attr("src", imgURL);
 
             // Appending the image
-            topicDiv.append(images);
+            topicDiv.prepend(images);
 
             //Putting giphys in the html
             $("#laughs-view").append(topicDiv);
         }
     });
 }
-//$("img").on("click", function () {
-    // // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-    // var state = $(this).attr(response.data[i].images.original_still.url);
-    // // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-    // // Then, set the image's data-state to animate
-    // // Else set src to the data-still value
-    // if (state === response.data[i].images.original_still.url) {
-    //     $(this).attr("src", $(this).attr(response.data[i].images.original.url));
-    //     $(this).attr(response.data[i].images.original.url);
-    // } else {
-    //     $(this).attr("src", $(this).attr(response.data[i].images.original_still.url));
-    //     $(this).attr(response.data[i].images.original_still.url);
-    //}
-//});
 
 // Function for displaying giphy data
 function renderButtons() {
@@ -79,6 +68,9 @@ function renderButtons() {
         $("#laughs").append(a);
     }
 }
+// 4. Still needed====>This function pauses and animates the gif
+// 6. Still need===>Add a form to your page takes the value from a user input box and adds it into your `topics` array. Then make a function call that takes each topic in the array remakes the buttons on the page.
+
 // This function handles events where one button is clicked
 $("#add-giphy").on("click", function (event) {
     // event.preventDefault() prevents the form from trying to submit itself.
