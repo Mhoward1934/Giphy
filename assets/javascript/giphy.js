@@ -31,16 +31,35 @@ function displayGiphyInfo() {
             //topicDiv.append(pTwo);
 
             //Getting the giphy image
-            var imgURL = response.data[i].images.original.url;
+            var imgURL = response.data[i].images.original_still.url;
 
             // Creating an element to hold the image
-            var images = $("<img>").attr("src", imgURL);
+            var images = $("<img>");
+            images.attr("src", response.data[i].images.original_still.url)
+            images.attr("animatedImage", response.data[i].images.original.url)
+            images.attr("stillImage", response.data[i].images.original_still.url)
+            images.attr("currentState", "still")
+            images.addClass("funnyGifs")
+            //images.attr("currentState", "animate")
 
             // Appending the image
             topicDiv.prepend(images);
 
             //Putting giphys in the html
             $("#laughs-view").append(topicDiv);
+
+            // 4. ===DOES NOT WORK!=== This function pauses and animates the gif
+            $(document).on("click", ".funnyGifs", function() {
+                var currentState = $(this).attr("currentState");
+                if (currentState === "still") {
+                    $(this).attr("src", $(this).attr("animatedImage"))
+                    $(this).attr("currentState", "animate")
+                }
+                else {
+                    $(this).attr("src", $(this).attr("stillImage"))
+                    $(this).attr("currentState", "still")
+                }
+            })
         }
     });
 }
@@ -68,8 +87,8 @@ function renderButtons() {
         $("#laughs").append(a);
     }
 }
-// 4. Still needed====>This function pauses and animates the gif
-// 6. Still need===>Add a form to your page takes the value from a user input box and adds it into your `topics` array. Then make a function call that takes each topic in the array remakes the buttons on the page.
+
+// 6. ===STILL NEED===>Add a form to your page takes the value from a user input box and adds it into your `topics` array. Then make a function call that takes each topic in the array remakes the buttons on the page.
 
 // This function handles events where one button is clicked
 $("#add-giphy").on("click", function (event) {

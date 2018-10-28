@@ -5,9 +5,10 @@ input {
     margin: 10px;
 }
 h1 {
-    background-color: blue;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    background-image: url(../images/yellow-bricks-background.jpg);
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
 }
 body {
     background-color: tan;
